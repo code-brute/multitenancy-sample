@@ -1,4 +1,4 @@
-package com.anakiou.mt;
+package com.github.minly.multitenancy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
