@@ -1,0 +1,36 @@
+<div class="alert alert-danger" ng-show="error">
+    There was a problem logging in. Please try again.
+</div>
+<form role="form" ng-submit="login()">
+    <div class="form-group">
+        <label for="tenantId">Tenant:</label> <input type="text"
+                                                       class="form-control" id="username" name="tenantId" ng-model="credentials.tenantId"/>
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label> <input type="text"
+                                                       class="form-control" id="username" name="username" ng-model="credentials.username"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label> <input type="password"
+                                                       class="form-control" id="password" name="password" ng-model="credentials.password"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="container">
+    <h5>Available Users. THIS IS JUST FOR THE DEMO. Login using one of these and you should see different product list for the company they belong to</h5>
+    <table class="table table-striped">
+        <thead>
+            <th>Company</th>
+            <th>Name</th>
+            <th>Password</th>
+        </thead>
+        <tbody>
+        <tr class="product" ng-repeat="user in users">
+            <td>{{user.name.substring(0, user.name.indexOf('-'))}}</td>
+            <td>{{user.name}}</td>
+            <td>password</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
