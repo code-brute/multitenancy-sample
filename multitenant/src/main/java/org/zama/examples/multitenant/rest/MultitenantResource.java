@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * HelloWorldResource.
+ * HelloWorldResource
+ * 
+ * @author Minly Wang
+ * @since 2016年5月26日
  *
- * @author Zakir Magdum
  */
 @RestController
 @RequestMapping("/")

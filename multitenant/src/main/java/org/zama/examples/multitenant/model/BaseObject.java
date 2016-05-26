@@ -11,15 +11,17 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.zama.examples.multitenant.util.LocalDateTimePersistenceConverter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * BaseObject.
+ * BaseObject
  * 
- * @author Zakir Magdum
+ * @author Minly Wang
+ * @since 2016年5月26日
+ *
+ * @param <T>
  */
 @SuppressWarnings({ "serial", "rawtypes" })
 @MappedSuperclass

@@ -22,6 +22,8 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.zama.examples.multitenant.annotation.TenantTransactional;
+import org.zama.examples.multitenant.util.Constants;
 
 /**
  * MultiTenancyJpaConfiguration
@@ -31,9 +33,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  */
 @Configuration
-@ComponentScan("org.zama.examples.multitenant.confighelper")
+@ComponentScan("org.zama.examples.multitenant.tenant")
 @EnableConfigurationProperties(JpaProperties.class)
-@EnableJpaRepositories(entityManagerFactoryRef = "tenantEntityManager", transactionManagerRef = "tenantTransactionManager", basePackages = { "com.github.pires.example.repository" })
+@EnableJpaRepositories(entityManagerFactoryRef = Constants.TENANT_ENTITY_MANAGER_NAME, transactionManagerRef = TenantTransactional.DEFAULT_NAME, basePackages = { "com.github.pires.example.repository" })
 @EnableTransactionManagement
 public class MultiTenancyJpaConfiguration {
 	@Bean
@@ -41,7 +43,7 @@ public class MultiTenancyJpaConfiguration {
 		return new HibernateJpaVendorAdapter();
 	}
 
-	@Bean(name = "tenantEntityManager")
+	@Bean(name = Constants.TENANT_ENTITY_MANAGER_NAME)
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, MultiTenantConnectionProvider connectionProvider, CurrentTenantIdentifierResolver tenantResolver) {
 		LocalContainerEntityManagerFactoryBean emfBean = new LocalContainerEntityManagerFactoryBean();
 		emfBean.setDataSource(dataSource);
@@ -65,7 +67,7 @@ public class MultiTenancyJpaConfiguration {
 		return packages.toArray(new String[packages.size()]);
 	}
 
-	@Bean(name = "tenantTransactionManager")
+	@Bean(name = TenantTransactional.DEFAULT_NAME)
 	public JpaTransactionManager transactionManager(EntityManagerFactory tenantEntityManager) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(tenantEntityManager);

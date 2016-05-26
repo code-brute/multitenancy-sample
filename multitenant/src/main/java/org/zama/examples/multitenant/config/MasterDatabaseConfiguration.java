@@ -20,6 +20,8 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.zama.examples.multitenant.annotation.MasterTransactional;
+import org.zama.examples.multitenant.util.Constants;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -31,7 +33,9 @@ import com.zaxxer.hikari.HikariDataSource;
  */
 @Configuration
 @EnableConfigurationProperties(JpaProperties.class)
-@EnableJpaRepositories(entityManagerFactoryRef = "masterEntityManager", transactionManagerRef = "masterTransactionManager", basePackages = { "org.zama.examples.multitenant.repository.master" })
+@EnableJpaRepositories(entityManagerFactoryRef = Constants.MASTER_ENTITY_MANAGER_NAME, 
+transactionManagerRef = MasterTransactional.DEFAULT_NAME, 
+basePackages = {"org.zama.examples.multitenant.master.repository" })
 @EnableTransactionManagement
 public class MasterDatabaseConfiguration {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MasterDatabaseConfiguration.class);
@@ -51,8 +55,8 @@ public class MasterDatabaseConfiguration {
 	@Inject
 	private JpaProperties jpaProperties;
 
-//	@Inject
-//	private DataSource dataSource;
+	// @Inject
+	// private DataSource dataSource;
 
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
@@ -80,7 +84,7 @@ public class MasterDatabaseConfiguration {
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "org.zama.examples.multitenant.model.master" });
+		em.setPackagesToScan(new String[] { "org.zama.examples.multitenant.master.model" });
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(additionalJpaProperties(dataSource));
 
@@ -97,7 +101,7 @@ public class MasterDatabaseConfiguration {
 		return properties;
 	}
 
-	@Bean(name = "masterTransactionManager")
+	@Bean(name = MasterTransactional.DEFAULT_NAME)
 	public JpaTransactionManager transactionManager(EntityManagerFactory masterEntityManager) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(masterEntityManager);

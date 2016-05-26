@@ -1,25 +1,26 @@
 package org.zama.examples.multitenant.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.zama.examples.multitenant.confighelper.TenantIdentifierInterceptorAdapter;
-
 import javax.inject.Inject;
 
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.zama.examples.multitenant.tenant.TenantIdentifierInterceptorAdapter;
+
 /**
- * WebMvcConfig.
+ * WebMvcConfig
+ * 
+ * @author Minly Wang
+ * @since 2016年5月26日
  *
- * @author Zakir Magdum
  */
-//@Configuration
+// @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-    @Inject
-    private TenantIdentifierInterceptorAdapter multiTenancyInterceptor;
+	@Inject
+	private TenantIdentifierInterceptorAdapter multiTenancyInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(multiTenancyInterceptor);
-    }
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(multiTenancyInterceptor);
+	}
 }

@@ -1,9 +1,9 @@
-package org.zama.examples.multitenant.repository.master;
+package org.zama.examples.multitenant.master.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.zama.examples.multitenant.model.master.Tenant;
+import org.zama.examples.multitenant.master.model.Tenant;
 
 /**
  * TenantRepository
@@ -13,7 +13,6 @@ import org.zama.examples.multitenant.model.master.Tenant;
  *
  */
 public interface TenantRepository extends JpaRepository<Tenant, String> {
-	
 	Optional<Tenant> findOneByName(String name);
 
 	Optional<Tenant> findOneByTenantId(String tenantId);

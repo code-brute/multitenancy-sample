@@ -1,4 +1,4 @@
-package org.zama.examples.multitenant.confighelper;
+package org.zama.examples.multitenant.tenant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

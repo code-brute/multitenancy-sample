@@ -1,5 +1,4 @@
-package org.zama.examples.multitenant;
-
+package org.zama.examples.multitenant.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,7 +18,7 @@ import org.zama.examples.multitenant.config.MultiTenancyJpaConfiguration;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@ComponentScan
-@Import({MasterDatabaseConfiguration.class,MultiTenancyJpaConfiguration.class})
+@ComponentScan("org.zama.examples.multitenant")
+@Import({ MasterDatabaseConfiguration.class, MultiTenancyJpaConfiguration.class })
 public @interface EnableMultiTenancy {
 }

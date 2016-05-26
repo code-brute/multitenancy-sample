@@ -1,4 +1,4 @@
-package org.zama.examples.multitenant.confighelper;
+package org.zama.examples.multitenant.tenant;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +15,11 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.zama.examples.multitenant.model.master.Tenant;
-import org.zama.examples.multitenant.model.master.TenantDataSource;
-import org.zama.examples.multitenant.repository.master.TenantRepository;
+import org.zama.examples.multitenant.annotation.TenantTransactional;
+import org.zama.examples.multitenant.master.model.Tenant;
+import org.zama.examples.multitenant.master.model.TenantDataSource;
+import org.zama.examples.multitenant.master.repository.TenantRepository;
+import org.zama.examples.multitenant.util.Constants;
 import org.zama.examples.multitenant.util.Utils;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -31,7 +33,7 @@ import com.zaxxer.hikari.HikariDataSource;
  *
  */
 @Component
-@Transactional(value = "masterTransactionManager", readOnly = true)
+@Transactional(value = TenantTransactional.DEFAULT_NAME, readOnly = true)
 public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl implements ApplicationListener<ContextRefreshedEvent> {
 	private static final long serialVersionUID = 1L;
 

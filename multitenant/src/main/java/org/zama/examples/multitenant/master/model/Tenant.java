@@ -1,12 +1,11 @@
-package org.zama.examples.multitenant.model.master;
+package org.zama.examples.multitenant.master.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.zama.examples.multitenant.annotation.MasterTransactional;
 import org.zama.examples.multitenant.model.BaseObject;
 
 /**
@@ -18,9 +17,7 @@ import org.zama.examples.multitenant.model.BaseObject;
  */
 @Entity
 public class Tenant extends BaseObject<Tenant> {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Column(name = "TENANT_ID_", length = 64, unique = true, nullable = false)
 	private String tenantId;
@@ -28,7 +25,7 @@ public class Tenant extends BaseObject<Tenant> {
 	private String description;
 	@Column(name = "ADDRESS_", length = 255)
 	private String address;
-	@Column(name = "ENABLED_",length=2)
+	@Column(name = "ENABLED_", length = 2)
 	private boolean enabled;
 	@OneToOne(optional = false)
 	@JoinColumn(name = "TENANT_DATA_SOURCE_", unique = true)
