@@ -1,6 +1,5 @@
 This sample project is comprehended by the following:
 * Spring Boot REST controller
-* OrientDB (2.0.13) remote object persistence by means of Spring Data
 * Apache Shiro (1.2.4) session-management with OrientDB-based authorizing realm
 * Hazelcast (3.5.1) powered session distributed persistence
 
@@ -9,17 +8,6 @@ This sample project is comprehended by the following:
 * JDK 8
 * Maven 3.2.3 or newer
 
-# Spring Data hack
-
-We need ```spring-data-orientdb```for Spring Data OrientDB support.
-We'll be checking out a commit known to be working at the time of this writing.
-
-```
-git clone git@github.com:orientechnologies/spring-data-orientdb.git
-cd spring-data-orientdb
-git checkout 6337a3e
-mvn clean install
-```
 
 # Run
 
