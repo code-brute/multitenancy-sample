@@ -1,0 +1,27 @@
+spring:
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url: jdbc:mysql://localhost:3306/multimaster?createDatabaseIfNotExist=true
+        poolName: SpringBootHikariCP
+        username: root
+        password: minly
+        testWhileIdle: true
+        validationQuery: SELECT 1
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5Dialect
+        openInView: false
+        show_sql: false
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.hbm2ddl.auto: update
+
+logging:
+    level:
+        org.springframework.security: DEBUG
