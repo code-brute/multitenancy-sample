@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import org.zama.examples.multitenant.annotation.MasterTransactional;
+import org.hibernate.annotations.Type;
 import org.zama.examples.multitenant.model.BaseObject;
 
 /**
@@ -17,7 +17,7 @@ import org.zama.examples.multitenant.model.BaseObject;
  */
 @Entity
 public class Tenant extends BaseObject<Tenant> {
-	
+
 	private static final long serialVersionUID = 1L;
 	@Column(name = "TENANT_ID_", length = 64, unique = true, nullable = false)
 	private String tenantId;
@@ -26,6 +26,7 @@ public class Tenant extends BaseObject<Tenant> {
 	@Column(name = "ADDRESS_", length = 255)
 	private String address;
 	@Column(name = "ENABLED_", length = 2)
+	@Type(type = "yes_no")
 	private boolean enabled;
 	@OneToOne(optional = false)
 	@JoinColumn(name = "TENANT_DATA_SOURCE_", unique = true)

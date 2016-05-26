@@ -19,7 +19,6 @@ import org.zama.examples.multitenant.annotation.TenantTransactional;
 import org.zama.examples.multitenant.master.model.Tenant;
 import org.zama.examples.multitenant.master.model.TenantDataSource;
 import org.zama.examples.multitenant.master.repository.TenantRepository;
-import org.zama.examples.multitenant.util.Constants;
 import org.zama.examples.multitenant.util.Utils;
 
 import com.zaxxer.hikari.HikariConfig;
