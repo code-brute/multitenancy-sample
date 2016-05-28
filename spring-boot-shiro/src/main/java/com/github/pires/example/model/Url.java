@@ -15,7 +15,7 @@ import org.zama.examples.multitenant.model.BaseObject;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties(value = { "handler" })
+@JsonIgnoreProperties(value = { "version" })
 public class Url extends BaseObject<Url> {
 
 	private static final long serialVersionUID = 1L;

@@ -67,6 +67,7 @@ public class ShiroController {
 
 		String username = user.getUsername();
 		UsernamePasswordToken token = new TenantAuthenticationToken(user.getUsername(), user.getPassword(), user.getTenantId());
+		token.setRememberMe(user.isRememberMe());
 		// 获取当前的Subject
 		Subject currentUser = SecurityUtils.getSubject();
 		logger.info("从HttpSession中读取Attr : test = {}", currentUser.getSession().getAttribute("test"));

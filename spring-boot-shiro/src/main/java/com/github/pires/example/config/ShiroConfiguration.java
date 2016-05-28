@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordMatcher;
+import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
@@ -23,6 +25,7 @@ import com.github.pires.example.filter.TenantFilter;
 import com.github.pires.example.repository.UrlRepository;
 import com.github.pires.example.shiro.DaoShiroRealm;
 import com.github.pires.example.shiro.HazelcastSessionDao;
+import com.github.pires.example.web.MultiTenantCookieRememberMeManager;
 
 /**
  * Shiro 配置
@@ -35,10 +38,21 @@ import com.github.pires.example.shiro.HazelcastSessionDao;
 public class ShiroConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
 
+	// @Bean(name="rememberMeCookie")
+	// public SimpleCookie rememberMeCookie(){
+	//
+	// }
+
+	@Bean(name = "rememberMeManager")
+	public CookieRememberMeManager cookieRememberMeManager() {
+		return new MultiTenantCookieRememberMeManager();
+	}
+
 	@Bean(name = "securityManager")
-	public DefaultWebSecurityManager securityManager() {
+	public DefaultWebSecurityManager securityManager(RememberMeManager rememberMeManager) {
 		final DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setRealm(realm());
+		securityManager.setRememberMeManager(rememberMeManager);
 		securityManager.setSessionManager(sessionManager());
 		return securityManager;
 	}
@@ -116,7 +130,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/home", "authc");
 		filterChainDefinitionMap.put("/angularjs", "authc");
 		filterChainDefinitionMap.put("/resource", "anon");
-		filterChainDefinitionMap.put("/**", "authc");// anon 可以理解为不拦截
+		filterChainDefinitionMap.put("/**", "user");
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 	}

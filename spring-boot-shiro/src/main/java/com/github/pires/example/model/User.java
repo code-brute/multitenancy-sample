@@ -17,7 +17,7 @@ import org.zama.examples.multitenant.model.BaseObject;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties(value = { "handler" })
+@JsonIgnoreProperties(value = { "version" })
 public class User extends BaseObject<User> {
 
 	private static final long serialVersionUID = -1183403993173325535L;
@@ -36,6 +36,8 @@ public class User extends BaseObject<User> {
 	private String password;
 	@Transient
 	private String tenantId;
+	@Transient
+	private boolean rememberMe;
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID_"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID_"))
 	private List<Role> roles;
@@ -97,5 +99,13 @@ public class User extends BaseObject<User> {
 
 	public void setTenantId(String tenantId) {
 		this.tenantId = tenantId;
+	}
+
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
 	}
 }

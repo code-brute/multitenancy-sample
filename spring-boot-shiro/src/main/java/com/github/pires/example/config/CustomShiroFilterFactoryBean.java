@@ -14,31 +14,25 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.FilterChainManager;
 import org.apache.shiro.web.filter.mgt.FilterChainResolver;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
-import org.apache.shiro.web.servlet.ShiroHttpSession;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.zama.examples.multitenant.master.model.Tenant;
 import org.zama.examples.multitenant.master.repository.TenantRepository;
-import org.zama.examples.multitenant.util.Constants;
 import org.zama.examples.multitenant.util.MultiTenantUtils;
 
 import com.github.pires.example.filter.MultiTenantPathMatchingFilterChainResolver;
 import com.github.pires.example.model.Role;
 import com.github.pires.example.model.Url;
 import com.github.pires.example.repository.UrlRepository;
-import com.github.pires.example.servlet.SessionService;
-import com.github.pires.example.servlet.SessionUtils;
 
 /**
  * 继承 ShiroFilterFactoryBean 处理拦截资源文件问题。
@@ -53,8 +47,7 @@ public class CustomShiroFilterFactoryBean extends ShiroFilterFactoryBean impleme
 	private TenantRepository tenantRepository;
 	@Autowired
 	private UrlRepository urlRepository;
-	@Autowired
-	private SessionService sessionService;
+
 	// 对ShiroFilter来说，需要直接忽略的请求
 	private Set<String> ignoreExt;
 
@@ -119,35 +112,11 @@ public class CustomShiroFilterFactoryBean extends ShiroFilterFactoryBean impleme
 					flag = false;
 				}
 			}
-			String tenantId = initOrGetCurrentTenantId(request);
-			MultiTenantUtils.setCurrentTenantId(tenantId);
-			System.out.println("TENANT_ID>>>>" + tenantId);
 			if (flag) {
 				super.doFilterInternal(servletRequest, servletResponse, chain);
 			} else {
 				chain.doFilter(servletRequest, servletResponse);
 			}
-			MultiTenantUtils.clear();
-		}
-
-		private String initOrGetCurrentTenantId(HttpServletRequest request) {
-			String sessionId = SessionUtils.readValue(request, ShiroHttpSession.DEFAULT_SESSION_ID_NAME);
-			Session session = sessionService.getSession(sessionId);
-			String tenantId = (String) request.getParameter("tenantId");
-			if (StringUtils.isNotBlank(tenantId)) {
-				if (session != null) {
-					session.setAttribute(Constants.CURRENT_TENANT_IDENTIFIER, tenantId);
-					sessionService.updateSession(session);
-				}
-			} else {
-				if (session != null) {
-					tenantId = (String) session.getAttribute(Constants.CURRENT_TENANT_IDENTIFIER);
-				}
-			}
-			if (StringUtils.isNotBlank(tenantId)) {
-				return tenantId.trim();
-			}
-			return tenantId;
 		}
 
 	}
