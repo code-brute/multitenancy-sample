@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zama.examples.multitenant.util.Constants;
 
 import com.github.pires.example.authentication.TenantAuthenticationToken;
-import com.github.pires.example.entity.User;
+import com.github.pires.example.model.entity.User;
 
 /**
  * 

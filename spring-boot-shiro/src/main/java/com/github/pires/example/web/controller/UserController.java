@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.zama.examples.multitenant.annotation.TenantTransactional;
 import org.zama.examples.multitenant.util.MultiTenantUtils;
 
-import com.github.pires.example.entity.Role;
-import com.github.pires.example.entity.User;
+import com.github.pires.example.model.entity.Role;
+import com.github.pires.example.model.entity.User;
 import com.github.pires.example.repository.RoleRepository;
 import com.github.pires.example.repository.UserRepository;
 

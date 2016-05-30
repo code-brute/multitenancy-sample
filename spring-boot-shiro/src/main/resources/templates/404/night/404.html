@@ -1,0 +1,104 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>404: Page not found</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="author" content="Nitidus Design"/>
+	<meta name="keywords" content="404"/>
+	<meta name="description" content="404 Error page"/>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" media="all" href="css/404/night-styles.css">
+	<!--[if IE 9]><style type='text/css'>.error { opacity: 1 }</style><![endif]-->
+	<!-- Google font -->
+	<link href="//fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet" type="text/css">
+</head>
+<body id="errorpage" class="404error">
+
+	<!-- Content -->
+	<div id="content">
+
+		<!-- Sign wrapper -->
+		<div class="sign-wrapper">
+
+			<!-- 404 Error message -->
+			<div class="error">
+				<div class="error-message">
+					<h1>Oops! Error 404!</h1>
+					<h2>Page not found...</h2>
+					<p>It looks like you are lost. But don't worry, choose your way and you'll be home in no time.</p>
+				</div>
+			</div><!-- /.error -->
+
+			<!-- Owl mascot -->
+			<div class="owl">
+				<div class="owl-head"></div>
+				<div class="owl-body"></div>
+				<div class="owl-wingl"></div>
+				<div class="owl-wingr"></div>
+			</div><!-- /.owl -->
+
+			<!-- Road sign -->
+			<div class="stick"></div>
+
+			<!-- Site links -->
+			<nav class="main-navigation">
+				<ul class="indicators">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul><!-- /.indicators -->
+			</nav><!-- /.main-navigation -->
+
+		</div><!-- /.sign-wrapper -->
+
+		<!-- Hills and Moon -->
+		<div class="hills"></div>
+
+		<!-- Footer -->
+		<div id="footer"> 
+			<div class="container clearfix">
+
+				<!-- Copyright info -->
+				<div class="copyright-info">&copy; 2015 My Company</div>
+
+				<!-- Social links -->
+				<nav class="footer-navigation">
+					<ul class="social-pages">
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">Twitter</a></li>
+						<li><a href="#">Youtube</a></li>
+					</ul><!-- /.social-pages -->
+				</nav><!-- /.footer-navigation -->
+
+			</div><!-- /.container -->
+		</div><!-- /#footer -->
+
+	</div><!-- /#content -->
+
+	<!-- Preloader -->
+	<div id="preloader">
+		<div class="ball-pulse fade-in">
+			<div></div><div></div><div></div>
+		</div>
+	</div>
+
+	<!-- Preloader javascript -->
+	<script type="text/javascript">
+	window.onload = function() {
+		"use strict";
+
+		var preloader = document.getElementById("preloader");
+		// Resources are done loading, fade out the preloader
+		preloader.className = "fade-out";
+		// Remove the preloader after the fade out
+		setTimeout(function () {
+			preloader.parentNode.removeChild(preloader);
+		}, 300);
+	}
+	</script>
+
+</body>
+</html>

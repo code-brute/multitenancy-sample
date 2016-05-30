@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.pires.example.authentication.TenantAuthenticationToken;
-import com.github.pires.example.entity.Permission;
-import com.github.pires.example.entity.Role;
-import com.github.pires.example.entity.User;
+import com.github.pires.example.model.entity.Permission;
+import com.github.pires.example.model.entity.Role;
+import com.github.pires.example.model.entity.User;
 import com.github.pires.example.repository.UserRepository;
 
 /**

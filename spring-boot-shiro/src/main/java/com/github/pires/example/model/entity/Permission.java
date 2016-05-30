@@ -1,4 +1,4 @@
-package com.github.pires.example.entity;
+package com.github.pires.example.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
