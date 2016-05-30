@@ -84,7 +84,7 @@ public class MasterDatabaseConfiguration {
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "org.zama.examples.multitenant.master.model" });
+		em.setPackagesToScan(new String[] { "org.zama.examples.multitenant.master.entity" });
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(additionalJpaProperties(dataSource));
 

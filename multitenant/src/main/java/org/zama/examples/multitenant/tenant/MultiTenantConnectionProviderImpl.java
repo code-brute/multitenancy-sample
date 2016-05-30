@@ -16,8 +16,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.zama.examples.multitenant.annotation.TenantTransactional;
-import org.zama.examples.multitenant.master.model.Tenant;
-import org.zama.examples.multitenant.master.model.TenantDataSource;
+import org.zama.examples.multitenant.context.event.MultiTenantDatasSourceInitializedEvent;
+import org.zama.examples.multitenant.context.event.SimpleMultiTenantEventMulticaster;
+import org.zama.examples.multitenant.master.entity.Tenant;
+import org.zama.examples.multitenant.master.entity.TenantDataSource;
 import org.zama.examples.multitenant.master.repository.TenantRepository;
 import org.zama.examples.multitenant.util.Utils;
 
@@ -42,6 +44,8 @@ public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMu
 
 	@Inject
 	private TenantRepository tenantRepository;
+	@Inject
+	private SimpleMultiTenantEventMulticaster simpleMultiTenantEventMulticaster;
 
 	@Value("${spring.datasource.url}")
 	private String url;
@@ -85,6 +89,7 @@ public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMu
 				LOGGER.error("Error in database URL {}", url, e);
 			}
 		}
+		simpleMultiTenantEventMulticaster.multicastEvent(new MultiTenantDatasSourceInitializedEvent(this));
 	}
 
 //	private void initDbWithLiquibase(HikariDataSource ds) throws SQLException, LiquibaseException {

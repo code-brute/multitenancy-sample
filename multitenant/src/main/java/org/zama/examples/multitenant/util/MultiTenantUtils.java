@@ -1,5 +1,7 @@
 package org.zama.examples.multitenant.util;
 
+import org.springframework.util.StringUtils;
+
 /**
  * 
  * @author Minly Wang
@@ -22,5 +24,13 @@ public class MultiTenantUtils {
 		if (currentTenantId.get() != null) {
 			currentTenantId.remove();
 		}
+	}
+
+	public static String getTenantPrefix() {
+		String tenantId = getCurrentTenantId();
+		if (StringUtils.hasText(tenantId)) {
+			return tenantId + ":";
+		}
+		return Constants.UNKNOWN_TENANT + ":";
 	}
 }

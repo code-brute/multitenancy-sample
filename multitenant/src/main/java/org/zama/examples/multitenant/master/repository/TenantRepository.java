@@ -3,7 +3,7 @@ package org.zama.examples.multitenant.master.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.zama.examples.multitenant.master.model.Tenant;
+import org.zama.examples.multitenant.master.entity.Tenant;
 
 /**
  * TenantRepository

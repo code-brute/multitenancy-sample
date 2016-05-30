@@ -33,9 +33,10 @@ import org.zama.examples.multitenant.util.Constants;
  *
  */
 @Configuration
-@ComponentScan("org.zama.examples.multitenant.tenant")
+@ComponentScan({"org.zama.examples.multitenant.context.event","org.zama.examples.multitenant.tenant"})
 @EnableConfigurationProperties(JpaProperties.class)
-@EnableJpaRepositories(entityManagerFactoryRef = Constants.TENANT_ENTITY_MANAGER_NAME, transactionManagerRef = TenantTransactional.DEFAULT_NAME, basePackages = { "com.github.pires.example.repository" })
+@EnableJpaRepositories(entityManagerFactoryRef = Constants.TENANT_ENTITY_MANAGER_NAME, transactionManagerRef = TenantTransactional.DEFAULT_NAME, basePackages = {
+		"com.github.pires.example.repository" })
 @EnableTransactionManagement
 public class MultiTenancyJpaConfiguration {
 	@Bean
@@ -63,7 +64,7 @@ public class MultiTenancyJpaConfiguration {
 
 	private String[] buildPackagesToScanOfEntity() {
 		List<String> packages = new ArrayList<>();
-		packages.add("com.github.pires.example.model");
+		packages.add("com.github.pires.example.entity");
 		return packages.toArray(new String[packages.size()]);
 	}
 
