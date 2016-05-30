@@ -1,4 +1,4 @@
-package com.github.pires.example.filter;
+package com.github.pires.example.web.servlet;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.zama.examples.multitenant.util.Constants;
 import org.zama.examples.multitenant.util.MultiTenantUtils;
 
+import com.github.pires.example.service.SessionService;
 import com.github.pires.example.web.CookieUtils;
-import com.github.pires.example.web.SessionService;
 
 /**
  * Servlet {@code Filter} that ensures a tenant is associated and then removed

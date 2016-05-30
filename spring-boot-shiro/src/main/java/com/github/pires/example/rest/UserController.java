@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pires.example.model.Permission;
-import com.github.pires.example.model.Role;
-import com.github.pires.example.model.User;
+import com.github.pires.example.entity.Permission;
+import com.github.pires.example.entity.Role;
+import com.github.pires.example.entity.User;
 import com.github.pires.example.repository.PermissionRepository;
 import com.github.pires.example.repository.RoleRepository;
 import com.github.pires.example.repository.UserRepository;

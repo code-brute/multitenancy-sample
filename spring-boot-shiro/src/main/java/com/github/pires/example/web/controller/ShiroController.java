@@ -1,4 +1,6 @@
-package com.github.pires.example.controller;
+package com.github.pires.example.web.controller;
+
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zama.examples.multitenant.util.Constants;
 
 import com.github.pires.example.authentication.TenantAuthenticationToken;
-import com.github.pires.example.model.User;
+import com.github.pires.example.entity.User;
 
 /**
  * 
@@ -111,6 +113,25 @@ public class ShiroController {
 	public String unauthorizedRole() {
 		logger.info("------没有权限-------");
 		return "403";
+	}
+
+	@RequestMapping("/404")
+	public String error404() {
+		int hour = LocalDateTime.now().getHour();
+		if(hour<8 || hour>18){
+			return "404/night/404";
+		}
+		return "404/day/404";
+	}
+	@RequestMapping("/500")
+	public String error500() {
+		return "500";
+	}
+
+	@RequestMapping("/unauthorized")
+	public String unauthorized() {
+		logger.info("------没有权限-------");
+		return "unauthorized";
 	}
 
 }

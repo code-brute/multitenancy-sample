@@ -1,4 +1,4 @@
-package com.github.pires.example.model;
+package com.github.pires.example.entity;
 
 import java.util.ArrayList;
 import java.util.List;

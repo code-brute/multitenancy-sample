@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.github.pires.example.model.Url;
+import com.github.pires.example.entity.Url;
 
 /**
  * DAO for {@link Url}.

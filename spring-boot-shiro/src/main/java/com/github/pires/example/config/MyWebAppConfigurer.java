@@ -16,6 +16,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -37,8 +38,8 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter implements Envir
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-//		registry.addViewController("/").setViewName("forward:/index");
-//		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		// registry.addViewController("/").setViewName("forward:/index");
+		// registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 		super.addViewControllers(registry);
 	}
 
@@ -47,8 +48,8 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter implements Envir
 		// 多个拦截器组成一个拦截器链
 		// addPathPatterns 用于添加拦截规则
 		// excludePathPatterns 用户排除拦截
-//		registry.addInterceptor(new MyInterceptor1()).addPathPatterns("/**");
-//		registry.addInterceptor(new MyInterceptor2()).addPathPatterns("/**");
+		// registry.addInterceptor(new MyInterceptor1()).addPathPatterns("/**");
+		// registry.addInterceptor(new MyInterceptor2()).addPathPatterns("/**");
 		// registry.addInterceptor(new
 		// JsonErrorMsgInterceptor()).addPathPatterns("*.json");
 		registry.addInterceptor(new JsonErrorMsgInterceptor()).addPathPatterns("/**");
@@ -100,14 +101,18 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter implements Envir
 		super.extendMessageConverters(converters);
 	}
 
-//	@Override
-//	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-//		configurer.defaultContentType(MediaType.TEXT_HTML)
-//				// .useJaf(true)
-//				// .favorPathExtension(true)
-//				.mediaType("xml", MediaType.APPLICATION_XML).mediaType("pdf", MediaType.valueOf("application/pdf")).mediaType("json", MediaType.APPLICATION_JSON)
-//				.mediaType("xls", MediaType.valueOf("application/vnd.ms-excel")).ignoreAcceptHeader(true);
-//	}
+	// @Override
+	// public void configureContentNegotiation(ContentNegotiationConfigurer
+	// configurer) {
+	// configurer.defaultContentType(MediaType.TEXT_HTML)
+	// // .useJaf(true)
+	// // .favorPathExtension(true)
+	// .mediaType("xml", MediaType.APPLICATION_XML).mediaType("pdf",
+	// MediaType.valueOf("application/pdf")).mediaType("json",
+	// MediaType.APPLICATION_JSON)
+	// .mediaType("xls",
+	// MediaType.valueOf("application/vnd.ms-excel")).ignoreAcceptHeader(true);
+	// }
 
 	/*
 	 * Configure ContentNegotiatingViewResolver

@@ -1,4 +1,4 @@
-package com.github.pires.example.model;
+package com.github.pires.example.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +16,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties(value = { "version" })
-public class Url extends BaseObject<Url> {
+public class Role extends BaseObject<Role> {
 
 	private static final long serialVersionUID = 1L;
-	@Column(name = "URL_", length = 500, nullable = false)
-	private String url;
+	
 	@Column(name = "DESCRIPTION_", length = 128)
 	private String description;
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "ROLE_URL", joinColumns = @JoinColumn(name = "URL_ID_"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID_"))
-	private List<Role> roles;
+	@JoinTable(name = "ROLE_PERMISSION", joinColumns = @JoinColumn(name = "ROLE_ID_"), inverseJoinColumns = @JoinColumn(name = "PERMISSION_ID_"))
+	private List<Permission> permissions;
 
 	public String getDescription() {
 		return description;
@@ -35,23 +34,14 @@ public class Url extends BaseObject<Url> {
 		this.description = description;
 	}
 
-	public String getUrl() {
-		return url;
+	public List<Permission> getPermissions() {
+		if (permissions == null)
+			this.permissions = new ArrayList<>();
+		return permissions;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public List<Role> getRoles() {
-		if (roles == null) {
-			this.roles = new ArrayList<>();
-		}
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 
 }

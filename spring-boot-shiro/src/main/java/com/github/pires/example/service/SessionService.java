@@ -1,4 +1,4 @@
-package com.github.pires.example.web;
+package com.github.pires.example.service;
 
 import org.apache.shiro.session.Session;
 

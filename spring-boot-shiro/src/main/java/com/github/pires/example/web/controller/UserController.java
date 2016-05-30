@@ -1,4 +1,4 @@
-package com.github.pires.example.controller;
+package com.github.pires.example.web.controller;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.zama.examples.multitenant.annotation.TenantTransactional;
 import org.zama.examples.multitenant.util.MultiTenantUtils;
 
-import com.github.pires.example.model.Role;
-import com.github.pires.example.model.User;
+import com.github.pires.example.entity.Role;
+import com.github.pires.example.entity.User;
 import com.github.pires.example.repository.RoleRepository;
 import com.github.pires.example.repository.UserRepository;
 

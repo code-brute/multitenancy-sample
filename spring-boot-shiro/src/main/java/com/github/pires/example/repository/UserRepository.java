@@ -2,7 +2,7 @@ package com.github.pires.example.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.github.pires.example.model.User;
+import com.github.pires.example.entity.User;
 
 /**
  * DAO for {@link User}.

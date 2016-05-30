@@ -1,4 +1,4 @@
-package com.github.pires.example.filter;
+package com.github.pires.example.web.servlet;
 
 import java.io.IOException;
 

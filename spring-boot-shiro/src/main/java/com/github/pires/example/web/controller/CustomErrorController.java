@@ -1,4 +1,4 @@
-package com.github.pires.example.controller;
+package com.github.pires.example.web.controller;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
